@@ -12,9 +12,24 @@ export class Student extends Model {
   })
   id1;
 
-  @Column
+  @Column({
+    validate:{
+      notEmpty:{msg: 'Name cannot be empty!'},
+      notNull:{msg:'You must specify a name!'},
+    },
+    allowNull:false
+  })
   name: string;
 
-  @Column
+  @Column(
+    {
+      validate:{
+        isEmail:{msg: 'Invalid email format!'},
+        notEmpty:{msg: 'Email cannot be empty!'},
+        notNull:{msg:'You must specify an email!'}
+      },
+      allowNull:false
+    }
+  )
   email: string;
 }
