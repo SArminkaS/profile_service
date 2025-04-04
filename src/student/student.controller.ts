@@ -19,9 +19,9 @@ export class StudentController {
     @Post('addOne')
     async addOneStudent(@Body() student)
     {
-        student = Student.build(student)
+        student = await this.studentService.addOne(Student.build(student))
         return {message:'Sucesfully added student with id ' + student.id1,
-            data:await this.studentService.addOne(student)
+            data:student
         }
     }
     @Put('updateOne')
