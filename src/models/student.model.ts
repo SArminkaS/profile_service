@@ -8,7 +8,10 @@ export class Student extends Model {
   @Column({
     type: DataType.UUID,
     primaryKey: true,
-    defaultValue: DataType.UUIDV4
+    defaultValue: DataType.UUIDV4,
+    validate:{
+      isUUID:{msg:'The id is not in a correct UUID format!'}
+    }
   })
   id1;
 
