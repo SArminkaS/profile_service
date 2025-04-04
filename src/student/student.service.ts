@@ -5,18 +5,20 @@ import { Student } from 'src/models/student.model';
 export class StudentService {
     async getAll(currentPage:number, perPage:number)
     {
-        return await Student.findAll({offset:(currentPage - 1)*perPage,limit:perPage})
+        return await Student.findAndCountAll({offset:(currentPage - 1)*perPage,limit:perPage})
     }
-    async addOne(student: {id1:any,name:string,email:string})
+    async addOne(student: Student)
     {
-        return await Student.create(student)
+        return await student.save()
     }
-    async updateOne(id:any, fields: {name:string,email:string})
+    async updateOne(data)
     {
-        return await Student.update(fields,{where:{id1:id}})
+        const id = data.id1
+        delete data.id1
+        return await Student.update(data,{where:{id1:id}})
     }
 
-    async deleteOne(id:any)
+    async deleteOne(id)
     {
         return await Student.destroy({where:{id1:id}})
     }

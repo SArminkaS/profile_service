@@ -1,10 +1,16 @@
 
-import { Column, Model, Table } from 'sequelize-typescript';
+import { Column, Model, Table, DataType } from 'sequelize-typescript';
 
-@Table
+@Table({
+  tableName:'students'
+})
 export class Student extends Model {
-  @Column
-  id_: string;
+  @Column({
+    type: DataType.UUID,
+    primaryKey: true,
+    defaultValue: DataType.UUIDV4
+  })
+  id1;
 
   @Column
   name: string;
