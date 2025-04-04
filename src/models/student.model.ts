@@ -10,7 +10,7 @@ export class Student extends Model {
     primaryKey: true,
     defaultValue: DataType.UUIDV4,
     validate:{
-      isUUID:{msg:'The id is not in a correct UUID format!'}
+      isUUID:{msg:'The id is not in a correct UUID4 format!',args:4}
     }
   })
   id1;
