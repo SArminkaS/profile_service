@@ -10,7 +10,7 @@ export class ValidationFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
 
     response
-      .status(404)
+      .status(400)
       .json({
         error: exception.message,
         message: exception.errors
