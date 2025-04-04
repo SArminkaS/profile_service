@@ -6,7 +6,7 @@ import { Student } from 'src/models/student.model';
 export class StudentController {
     constructor(private studentService: StudentService){}
     @Get('list')
-    async list(@Query('currentPage') currentPage: number, @Query('perPage') perPage: number)
+    async list(@Query('currentPage') currentPage = 1, @Query('perPage') perPage = 10)
     {
         const data = await this.studentService.getAll(currentPage,perPage)
         return {
