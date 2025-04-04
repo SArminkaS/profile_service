@@ -20,4 +20,12 @@
             </column>
             </createTable>
     </changeSet>
+<changeSet id="2" author="Armin">
+        <renameColumn
+            tableName="students"
+            oldColumnName="id_"
+            newColumnName="id1"
+     />
+    </changeSet>
+
 </databaseChangeLog>
