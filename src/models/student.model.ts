@@ -10,15 +10,15 @@ export class Student extends Model {
     primaryKey: true,
     defaultValue: DataType.UUIDV4,
     validate:{
-      isUUID:{msg:'The id is not in a correct UUID4 format!',args:4}
+      isUUID:{msg:'Az id nem egy megfelelő UUID4 formátum!',args:4}
     }
   })
   declare id1;
 
   @Column({
     validate:{
-      notEmpty:{msg: 'Name cannot be empty!'},
-      notNull:{msg:'You must specify a name!'},
+      notEmpty:{msg: 'A név nem lehet üres!'},
+      notNull:{msg:'Adj meg egy nevet!'},
     },
     allowNull:false
   })
@@ -27,9 +27,9 @@ export class Student extends Model {
   @Column(
     {
       validate:{
-        isEmail:{msg: 'Invalid email format!'},
-        notEmpty:{msg: 'Email cannot be empty!'},
-        notNull:{msg:'You must specify an email!'}
+        isEmail:{msg: 'Nem megfelelő email!'},
+        notEmpty:{msg: 'Az email nem lehet üres!'},
+        notNull:{msg:'Adj meg egy emailt!'}
       },
       allowNull:false
     }
