@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
 import { StudentService } from './student.service';
 import { Student } from 'src/models/student.model';
+import { AddStudentDto } from './dto_classes/add_student.dto';
+import { UpdateStudentDto } from './dto_classes/update_student.dto';
 
 @Controller('student')
 export class StudentController {
@@ -11,21 +13,24 @@ export class StudentController {
         const data = await this.studentService.getAll(currentPage,perPage)
         return {
             data:data.rows,
-            numberOfPages:data.count,
+            numberOfPages:Math.ceil(data.count / perPage),
             currentPage:currentPage,
             perPage:perPage
         }
     }
     @Post('addOne')
-    async addOneStudent(@Body() student)
+    async addOneStudent(@Body() student: AddStudentDto)
     {
-        student = await this.studentService.addOne(Student.build(student))
-        return {message:'Sucesfully added student with id ' + student.id1,
-            data:student
+        const new_student = Student.build()
+        new_student.email = student.email
+        new_student.name = student.name
+        student = await this.studentService.addOne(new_student)
+        return {message:'Sucesfully added student with id ' + new_student.id1,
+            data:new_student
         }
     }
     @Put('updateOne')
-    async updateOneStudent(@Body() data)
+    async updateOneStudent(@Body() data:UpdateStudentDto)
     {
         return {
             message:'Successfully updated student with id '+ data.id1,
