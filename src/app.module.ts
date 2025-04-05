@@ -6,7 +6,7 @@ import { Student } from './models/student.model';
 import { StudentService } from './student/student.service';
 import { StudentController } from './student/student.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { Dialect } from 'sequelize';
+import { StudentModule } from './student/student.module';
 
 @Module({
   imports: [
@@ -26,7 +26,8 @@ import { Dialect } from 'sequelize';
         }
       }),
       inject: [ConfigService]
-    })
+    }),
+    StudentModule
   ],
   controllers: [AppController, StudentController],
   providers: [AppService, StudentService],
