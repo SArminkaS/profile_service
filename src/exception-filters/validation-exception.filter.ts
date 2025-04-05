@@ -4,7 +4,7 @@ import { Response } from 'express';
 import { ValidationError } from 'sequelize'
 
 @Catch(ValidationError)
-export class ValidationFilter implements ExceptionFilter {
+export class SeuqelizeValidationFilter implements ExceptionFilter {
   catch(exception: ValidationError, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
