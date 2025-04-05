@@ -13,7 +13,7 @@ export class Student extends Model {
       isUUID:{msg:'The id is not in a correct UUID4 format!',args:4}
     }
   })
-  id1;
+  declare id1;
 
   @Column({
     validate:{
@@ -22,7 +22,7 @@ export class Student extends Model {
     },
     allowNull:false
   })
-  name: string;
+  declare name: string;
 
   @Column(
     {
@@ -34,5 +34,5 @@ export class Student extends Model {
       allowNull:false
     }
   )
-  email: string;
+  declare email: string;
 }
