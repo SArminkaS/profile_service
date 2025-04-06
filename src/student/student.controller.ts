@@ -25,7 +25,7 @@ export class StudentController {
         new_student.email = student.email
         new_student.name = student.name
         student = await this.studentService.addOne(new_student)
-        return {message:'Sucesfully added student with id ' + new_student.id1,
+        return {message:'A következő azonosítójú tanuló sikeresen hozzá lett adva ' + new_student.id1,
             data:new_student
         }
     }
@@ -36,11 +36,11 @@ export class StudentController {
         const updated = await this.studentService.updateOne(data)
         if(updated[0] > 0)
         return {
-            message:'Successfully updated student with id '+ id,
+            message:'Sikeresn módosítva lett a következő azonosítójú tanuló '+ id,
             data:updated}
         else if (updated[0] == 0)
         {
-            throw new HttpException('Cannot find student with id '+id, HttpStatus.NOT_FOUND)
+            throw new HttpException('Nem található a következő azonosítjú tanuló '+id, HttpStatus.NOT_FOUND)
         }
     }
     @Delete('deleteOne/:id')
@@ -58,13 +58,13 @@ export class StudentController {
         if(deleted > 0)
         {
             return {
-                message:'Sucessfully deleted student with id',
+                message:'A tanuló sikeresen törölve lett!',
                 data:id
             }
         }
         else if(deleted == 0)
         {
-            throw new HttpException('Cannot find student with id '+id, HttpStatus.NOT_FOUND)
+            throw new HttpException('Nem található a következő azonosítjú tanuló '+id, HttpStatus.NOT_FOUND)
         }
     }
 }
