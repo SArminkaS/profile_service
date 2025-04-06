@@ -11,6 +11,6 @@ async function bootstrap() {
   })
   app.useGlobalFilters(new SeuqelizeValidationFilter());
   app.useGlobalPipes(new ValidationPipe({transform:true}));
-  await app.listen(process.env.PORT ?? 3001, process.env.HOST || '127.0.0.1')
+  await app.listen(process.env.PORT ?? 3001, process.env.HOST ?? 'localhost')
 }
 bootstrap();
