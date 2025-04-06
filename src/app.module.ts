@@ -13,12 +13,12 @@ import { StudentModule } from './student/student.module';
     ConfigModule.forRoot({isGlobal:true}),
     SequelizeModule.forRootAsync({
       useFactory: (configService: ConfigService) => ({
-        dialect: 'postgres',
-        host: configService.get<string>('DB_HOST'),
-        port: configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USER'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME'),
+        dialect: configService.get('DB_DIALECT'),
+        host: configService.get('DB_HOST'),
+        port: configService.get('DB_PORT'),
+        username: configService.get('DB_USER'),
+        password: configService.get('DB_PASSWORD'),
+        database: configService.get('DB_NAME'),
         models:[Student],
         define:
         {
