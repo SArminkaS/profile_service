@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, Put, Query } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseUUIDPipe, Post, Put, Query } from '@nestjs/common';
 import { StudentService } from './student.service';
 import { Student } from 'src/models/student.model';
 import { AddStudentDto } from './dto_classes/add_student.dto';
@@ -44,7 +44,15 @@ export class StudentController {
         }
     }
     @Delete('deleteOne/:id')
-    async deleteOne(@Param('id') id: string)
+    async deleteOne(@Param('id',
+        new ParseUUIDPipe(
+            {
+                errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE,
+                exceptionFactory() {
+                    return new BadRequestException('Az id nem megfelelő UUID4 formátumú!')
+                },
+            })
+    ) id: string)
     {
         const deleted = await this.studentService.deleteOne(id)
         if(deleted > 0)
