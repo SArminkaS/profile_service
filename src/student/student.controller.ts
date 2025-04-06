@@ -25,14 +25,14 @@ export class StudentController {
         new_student.email = student.email
         new_student.name = student.name
         student = await this.studentService.addOne(new_student)
-        return {message:'A következő azonosítójú tanuló sikeresen hozzá lett adva ' + new_student.id1,
+        return {message:'A következő azonosítójú tanuló sikeresen hozzá lett adva ' + new_student.id,
             data:new_student
         }
     }
     @Put('updateOne')
     async updateOneStudent(@Body() data:UpdateStudentDto)
     {
-        const id = data.id1
+        const id = data.id
         const updated = await this.studentService.updateOne(data)
         if(updated[0] > 0)
         return {

@@ -13,7 +13,7 @@ export class Student extends Model {
       isUUID:{msg:'Az id nem egy megfelelő UUID4 formátum!',args:4}
     }
   })
-  declare id1;
+  declare id: string;
 
   @Column({
     validate:{
