@@ -32,24 +32,31 @@ export class StudentController {
     @Put('updateOne')
     async updateOneStudent(@Body() data:UpdateStudentDto)
     {
+        const id = data.id1
+        const updated = await this.studentService.updateOne(data)
+        if(updated[0] > 0)
         return {
-            message:'Successfully updated student with id '+ data.id1,
-            data:await this.studentService.updateOne(data)}
+            message:'Successfully updated student with id '+ id,
+            data:updated}
+        else if (updated[0] == 0)
+        {
+            throw new HttpException('Cannot find student with id '+id, HttpStatus.NOT_FOUND)
+        }
     }
-    @Delete('deleteOne/:id1')
-    async deleteOne(@Param() param)
+    @Delete('deleteOne/:id')
+    async deleteOne(@Param('id') id: string)
     {
-        const deleted = await this.studentService.deleteOne(param.id1)
+        const deleted = await this.studentService.deleteOne(id)
         if(deleted > 0)
         {
             return {
                 message:'Sucessfully deleted student with id',
-                data:param.id1
+                data:id
             }
         }
         else if(deleted == 0)
         {
-            throw new HttpException('Cannot find student with id '+param.id1, HttpStatus.NOT_FOUND)
+            throw new HttpException('Cannot find student with id '+id, HttpStatus.NOT_FOUND)
         }
     }
 }
