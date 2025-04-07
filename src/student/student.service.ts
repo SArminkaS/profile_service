@@ -13,13 +13,13 @@ export class StudentService {
     }
     async updateOne(data: any)
     {
-        const id = data.id1
-        delete data.id1
-        return await Student.update(data,{where:{id1:id}})
+        const id = data.id
+        delete data.id
+        return await Student.update(data,{where:{id:id}})
     }
 
     async deleteOne(id: string)
     {
-        return await Student.destroy({where:{id1:id}})
+        return await Student.destroy({where:{id:id}})
     }
 }
